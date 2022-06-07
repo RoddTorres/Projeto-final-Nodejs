@@ -12,7 +12,7 @@ class Character {
     }
   
     static async getCharacterByOrigin(id) {
-      const { data } = await rickAndMortyApi.get(`/character/${id}`);
+      const { data } = await rickAndMortyApi.get(`/character`);
       return data;
     }
   }

@@ -1,1 +1,1 @@
-const rickAndMortyapi = require('../config/rickandmortyapi')
+const rickAndMortyapi = require('../config/rickandmorty_api')
