@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Projeto Final de NodeJS (Grupo: Aline, Marcos, Rodrigo)",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "index.js"
   },

@@ -3,7 +3,7 @@
 const RickAndMortyController = require("../controllers/character_controller");
 
 module.exports = {
-  "/character": RickAndMortyController.getPokemonById,
+  "/character": RickAndMortyController.getAllCharacters,
   "/location": RickAndMortyController.getPokemonByName,
   "/episode": RickAndMortyController.listPokemons,
 };

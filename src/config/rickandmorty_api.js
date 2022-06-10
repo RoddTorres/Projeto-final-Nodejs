@@ -3,8 +3,6 @@
 
 const axios = require("axios");
 
-const rickAndMortyApi = axios.create({
+module.exports = axios.create({
   baseURL: "https://rickandmortyapi.com/api",
 });
-
-module.exports = rickAndMortyApi;
