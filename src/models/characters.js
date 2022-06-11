@@ -6,6 +6,11 @@ class Character {
     return data;
   }
 
+  static async getCharacterByStatus(options) {
+    const { data } = await rickAndMortyApi.get("/character", options);
+    return data;
+  }
+
   static async getCharacterById(id) {
     const { data } = await rickAndMortyApi.get(`/character/${id}`);
     return data;
