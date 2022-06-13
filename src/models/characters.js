@@ -6,18 +6,33 @@ class Character {
     return data;
   }
 
-  static async getCharacterByStatus(options) {
+  static async getCharactersByStatus(options) {
     const { data } = await rickAndMortyApi.get("/character", options);
     return data;
   }
 
-  static async getCharacterById(id) {
-    const { data } = await rickAndMortyApi.get(`/character/${id}`);
+  static async getCharactersBySpecies(options) {
+    const { data } = await rickAndMortyApi.get("/character", options);
     return data;
   }
 
-  static async getCharacterByOrigin(id) {
-    const { data } = await rickAndMortyApi.get(`/character`);
+  static async getCharactersByOrigin(options) {
+    const { data } = await rickAndMortyApi.get("/character", options);
+    return data;
+  }
+
+  static async getCharactersByGender(options) {
+    const { data } = await rickAndMortyApi.get("/character", options);
+    return data;
+  }
+
+  static async getCharactersByName(options) {
+    const { data } = await rickAndMortyApi.get("/character", options);
+    return data;
+  }
+
+  static async getCharactersById(id) {
+    const { data } = await rickAndMortyApi.get(`/character/${id}`);
     return data;
   }
 }
