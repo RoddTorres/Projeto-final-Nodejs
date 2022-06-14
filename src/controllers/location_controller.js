@@ -34,6 +34,11 @@ class LocationController {
               name
             },
           };
+          if (!name) {
+            res.writeHead(400);
+            res.end("Hey Bro. Type any name of locations");
+            return;
+          };
           const locations = await Locations.getLocationsByName(options);
           response.writeHead(200);
           response.end(JSON.stringify(locations));
@@ -52,6 +57,11 @@ class LocationController {
                 dimension
             },
           };
+          if (!dimension) {
+            res.writeHead(400);
+            res.end("Hey Bro. Type any dimension");
+            return;
+          };
           const locations = await Locations.getLocationsByDimension(options);
           response.writeHead(200);
           response.end(JSON.stringify(locations));
@@ -69,6 +79,11 @@ class LocationController {
             params: {
                 type
             },
+          };
+          if (!type) {
+            res.writeHead(400);
+            res.end("Hey Bro. Type any type locations");
+            return;
           };
           const locations = await Locations.getLocationsByType(options);
           response.writeHead(200);

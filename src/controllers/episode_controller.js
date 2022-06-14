@@ -33,9 +33,15 @@ class EpisodeController {
           name,
         },
       };
+      if (!name) {
+        res.writeHead(400);
+        res.end("Hey Bro. Type any name of episode");
+        return;
+      };
       const episodes = await Episodes.getEpisodesByName(options);
       response.writeHead(200);
       response.end(JSON.stringify(episodes));
+
     } catch (error) {
       const { status, message } = getErrorResponse(error);
       response.writeHead(status);
@@ -51,9 +57,15 @@ class EpisodeController {
           episode,
         },
       };
+      if (!episode) {
+        res.writeHead(400);
+        res.end("Hey Bro. Type any tag");
+        return;
+      };
       const episodes = await Episodes.getEpisodesByTag(options);
       response.writeHead(200);
       response.end(JSON.stringify(episodes));
+
     } catch (error) {
       const { status, message } = getErrorResponse(error);
       response.writeHead(status);
