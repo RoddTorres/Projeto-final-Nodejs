@@ -1,7 +1,7 @@
 // //Arquivo contém as funções de busca de personagens
 const Characters = require('../models/characters')
 const FileSystem = require('../routes/file_system')
-const getErrorResponse = require('../utils/httpResponse')
+const { setResponse, getErrorResponse }= require('../utils/httpResponse')
 
 //status: vivo morto OK
 // espécie OK
@@ -39,8 +39,8 @@ class CharacterController {
       };
 
       if (!["alive", "dead", "unknown"].includes(status)) {
-        res.writeHead(400);
-        res.end("Hey Bro. Status must be Alive, Dead or Unknown");
+        response.writeHead(400);
+        response.end("Hey Bro. Status must be Alive, Dead or Unknown");
         return;
       }
 
@@ -63,8 +63,8 @@ class CharacterController {
         },
       };
       if (!species) {
-        res.writeHead(400);
-        res.end("Hey Bro. Type any species (Human, Humanoid, Alien)");
+        response.writeHead(400);
+        response.end("Hey Bro. Type any species (Human, Humanoid, Alien)");
         return;
       }
       const characters = await Characters.getCharactersBySpecies(options);
@@ -80,15 +80,19 @@ class CharacterController {
   static async getCharactersByOrigin(request, response) {
     try {
       const { origin } = request.queryParams;
-      const characters = await Characters.getCharactersByOrigin();
-      const results = characters["results"];
+      const options = {
+        params : {
+            origin: origin
+        }
+    }
+      const originFilter = data.results.filter(data => data.origin.name.includes(origin))
 
-      const filtro = results.filter((char) => {
-        return char["origin"]["name"] == origin;
-      });
+  //return originFilter
 
+      const characters = await Characters.getCharactersByOrigin(originFilter);
       response.writeHead(200);
-      response.end(JSON.stringify(filtro));
+      response.end(JSON.stringify(characters));
+
     } catch (error) {
       const { status, message } = getErrorResponse(error);
       response.writeHead(status);
@@ -105,8 +109,8 @@ class CharacterController {
         },
       };
       if (!gender) {
-        res.writeHead(400);
-        res.end("Hey Bro. Type any gender (Female, Male, Genderless, Unknown)");
+        response.writeHead(400);
+        response.end("Hey Bro. Type any gender (Female, Male, Genderless, Unknown)");
         return;
       }
       const characters = await Characters.getCharactersByGender(options);
@@ -128,8 +132,8 @@ class CharacterController {
         },
       };
       if (!name) {
-        res.writeHead(400);
-        res.end("Hey Bro. Type any name");
+        response.writeHead(400);
+        response.end("Hey Bro. Type any name");
         return;
       }
       const characters = await Characters.getCharactersByName(options);
@@ -147,8 +151,8 @@ class CharacterController {
     try {
       const { id } = request.queryParams;
       if (!id) {
-        res.writeHead(400);
-        res.end("Hey Bro. Type a number as ID");
+        response.writeHead(400);
+        response.end("Hey Bro. Type a number as ID");
         return;
       }
       const characters = await Characters.getCharactersById(id);
@@ -170,8 +174,8 @@ class CharacterController {
         },
       };
        if (!name) {
-        res.writeHead(400);
-        res.end("Hey Bro. Type any name");
+        response.writeHead(400);
+        response.end("Hey Bro. Type any name");
         return;
       }
       const characters = await Characters.getCharactersByName(options);
@@ -189,4 +193,4 @@ class CharacterController {
 
 };
 
-module.exports = CharacterController;
+module.exports = CharacterController

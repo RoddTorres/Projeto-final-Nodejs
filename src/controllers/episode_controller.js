@@ -1,7 +1,7 @@
 //Arquivo contém as funções de busca de episódios
 const Episodes = require('../models/episodes')
 const FileSystem = require('../routes/file_system')
-const getErrorResponse = require('../utils/httpResponse')
+const { setResponse, getErrorResponse }= require('../utils/httpResponse')
 
 // nome
 // tag "episode". Ex.: { "episode":"S01E01" }
@@ -33,9 +33,15 @@ class EpisodeController {
           name,
         },
       };
+      if (!name) {
+        response.writeHead(400);
+        response.end("Hey Bro. Type any name of episode");
+        return;
+      };
       const episodes = await Episodes.getEpisodesByName(options);
       response.writeHead(200);
       response.end(JSON.stringify(episodes));
+
     } catch (error) {
       const { status, message } = getErrorResponse(error);
       response.writeHead(status);
@@ -51,9 +57,15 @@ class EpisodeController {
           episode,
         },
       };
+      if (!episode) {
+        response.writeHead(400);
+        response.end("Hey Bro. Type any tag");
+        return;
+      };
       const episodes = await Episodes.getEpisodesByTag(options);
       response.writeHead(200);
       response.end(JSON.stringify(episodes));
+
     } catch (error) {
       const { status, message } = getErrorResponse(error);
       response.writeHead(status);
@@ -62,4 +74,4 @@ class EpisodeController {
   }
 }
 
-module.exports = EpisodeController;
+module.exports = EpisodeController
