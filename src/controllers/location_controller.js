@@ -1,7 +1,7 @@
 //Arquivo contém as funções de busca de localidades
 const Locations = require('../models/locations')
 const FileSystem = require('../routes/file_system')
-const getErrorResponse = require('../utils/httpResponse')
+const { setResponse, getErrorResponse }= require('../utils/httpResponse')
 
 // * tipo
 // * dimensão OK
@@ -35,8 +35,8 @@ class LocationController {
             },
           };
           if (!name) {
-            res.writeHead(400);
-            res.end("Hey Bro. Type any name of locations");
+            response.writeHead(400);
+            response.end("Hey Bro. Type any name of locations");
             return;
           };
           const locations = await Locations.getLocationsByName(options);
@@ -58,8 +58,8 @@ class LocationController {
             },
           };
           if (!dimension) {
-            res.writeHead(400);
-            res.end("Hey Bro. Type any dimension");
+            response.writeHead(400);
+            response.end("Hey Bro. Type any dimension");
             return;
           };
           const locations = await Locations.getLocationsByDimension(options);
@@ -81,8 +81,8 @@ class LocationController {
             },
           };
           if (!type) {
-            res.writeHead(400);
-            res.end("Hey Bro. Type any type locations");
+            response.writeHead(400);
+            response.end("Hey Bro. Type any type locations");
             return;
           };
           const locations = await Locations.getLocationsByType(options);
@@ -97,4 +97,4 @@ class LocationController {
 
 };
 
-module.exports = LocationController;
+module.exports = LocationController
