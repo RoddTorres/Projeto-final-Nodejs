@@ -12,6 +12,7 @@ module.exports = {
   "/character-gender": CharacterController.getCharactersByGender,
   "/character-name": CharacterController.getCharactersByName,
   "/character-id": CharacterController.getCharactersById,
+  "/character-file": CharacterController.createCharactersFile,
 
   //Episodes
   "/episode": EpisodeController.getAllEpisodes,

@@ -1,7 +1,8 @@
 // //Arquivo contém as funções de busca de personagens
-const Characters = require('../models/characters')
 const FileSystem = require('../routes/file_system')
-const { setResponse, getErrorResponse }= require('../utils/httpResponse')
+const Characters = require('../models/characters')
+const rickAndMortyApi = require('../config/rickandmorty_api');
+const { setResponse, getErrorResponse } = require('../utils/httpResponse')
 
 //status: vivo morto OK
 // espécie OK
@@ -79,17 +80,16 @@ class CharacterController {
 
   static async getCharactersByOrigin(request, response) {
     try {
-      const { origin } = request.queryParams;
-      const options = {
-        params : {
-            origin: origin
-        }
-    }
-      const originFilter = data.results.filter(data => data.origin.name.includes(origin))
+      const { origin } = request.queryParams; 
 
-  //return originFilter
+      if (!origin) {
+        response.writeHead(400);
+        response.end("Hey Bro. Type any origin (Abadango, Earth, Unknown)");
+        return;
+      }
 
-      const characters = await Characters.getCharactersByOrigin(originFilter);
+      const characters = await Characters.getCharactersByOrigin(origin);
+
       response.writeHead(200);
       response.end(JSON.stringify(characters));
 
@@ -131,11 +131,13 @@ class CharacterController {
           name
         },
       };
+
       if (!name) {
         response.writeHead(400);
         response.end("Hey Bro. Type any name");
         return;
       }
+
       const characters = await Characters.getCharactersByName(options);
 
       response.writeHead(200);
@@ -150,11 +152,13 @@ class CharacterController {
   static async getCharactersById(request, response) {
     try {
       const { id } = request.queryParams;
+
       if (!id) {
         response.writeHead(400);
         response.end("Hey Bro. Type a number as ID");
         return;
       }
+
       const characters = await Characters.getCharactersById(id);
       response.writeHead(200);
       response.end(JSON.stringify(characters));
@@ -165,25 +169,29 @@ class CharacterController {
     }
   }
 
-  static async createCharactersName(request, response) {
+  static async createCharactersFile(request, response) {
     try {
-      const { name } = request.queryParams;
+      const { name } = request.queryParams
       const options = {
         params: {
           name
         },
       };
-       if (!name) {
-        response.writeHead(400);
-        response.end("Hey Bro. Type any name");
+
+      if (!name) {
+        res.writeHead(400);
+        res.end("Type any name");
         return;
       }
+
       const characters = await Characters.getCharactersByName(options);
+
       const { results } = characters;
       await FileSystem.writeFile(results);
 
-      await response.writeHead(200);
-      await response.end(JSON.stringify(personagensName));
+      await response.writeHead(201);
+      await response.end(JSON.stringify(characters));
+      
     } catch (error) {
       const { status, message } = getErrorResponse(error);
       response.writeHead(status);
