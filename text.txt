@@ -1,0 +1,3 @@
+Criação da pasta src
+Criação da pasta models
+Criação do index.js na pasta raiz

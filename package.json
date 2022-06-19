@@ -1,0 +1,25 @@
+{
+  "name": "projeto-final-nodejs",
+  "version": "1.0.0",
+  "description": "Projeto Final de NodeJS (Grupo: Aline, Marcos, Rodrigo)",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoddTorres/Projeto-final-Nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoddTorres/Projeto-final-Nodejs/issues"
+  },
+  "homepage": "https://github.com/RoddTorres/Projeto-final-Nodejs#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "luxon": "^2.4.0"
+  }
+}
