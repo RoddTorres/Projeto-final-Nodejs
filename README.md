@@ -15,18 +15,20 @@ Siga as instruções:
 
 ### :minidisc: Instalação
 
-    **Axios:**
-    * Abra o terminal e execute o comando:
-    ```
-    npm axios install
-    ```
+**Axios:**
+* Abra o terminal e execute o comando:
 
-    *Digite o comando, no terminal, para inicializar o servidor: 
+```
+npm axios install
+```
+
+* Digite o comando, no terminal, para inicializar o servidor:
+
 ```
 node index.js
 ```
   
-  *URL base estará rodando localmente em:
+  * URL base estará rodando localmente em:
 
 ```
 http://localhost:3000
