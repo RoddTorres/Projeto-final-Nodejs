@@ -17,10 +17,16 @@ Siga as instruções:
 ### :minidisc: Instalação
 
 **Axios:**
-* Abra o terminal e execute os comandos:
+* Abra o terminal e execute o comando:
 
 ```
 npm axios install
+```
+
+**Luxon:**
+* Abra o terminal e execute o comando:
+
+```
 npm install --save luxon
 ```
 
