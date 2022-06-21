@@ -71,11 +71,6 @@ http://localhost:3000
 - Na barra lateral esquerda, selecione uma das requisições pré-configuradas;
 - Selecione um dos itens da lista e clique em "Send";
 
-
-## Versão
-
-1.8.2 2022
-
 ## Autores
 
 * **Aline Alencar** - [Github](https://github.com/Alinevitalino)
